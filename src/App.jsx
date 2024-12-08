@@ -5,9 +5,9 @@ import HeroSection from "./components/HeroSection";
 import Searchbar from "./components/Searchbar";
 import Sidebar from "./components/Sidebar";
 import { HiMenuAlt2 } from "react-icons/hi";
-import Reviews from "./components/Reviews";
 import SearchedBooks from "./components/SearchedBooks";
 import PopularBooks from "./components/PopularBooks";
+import UsersReview from "./components/UsersReview";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -66,13 +66,13 @@ function App() {
 
       {/* User Review bar  */}
       <div className="hidden lg:block lg:w-[20%] p-4 bg-white">
-        <Reviews
+        <UsersReview
           searchTerm={searchTerm}
           isSearchBtnClicked={isSearchBtnClicked}
         />
       </div>
 
-      {/* floating navbar for mobile */}
+      {/* floating sidebar for mobile */}
       <div className="md:hidden fixed left-4 bottom-4 flex justify-center items-start z-50">
         <span className="w-14 h-14 rounded-full bg-[#EAEDE9] text-[#354051] flex justify-center items-center drop-shadow-md">
           <HiMenuAlt2 className="text-3xl" />
