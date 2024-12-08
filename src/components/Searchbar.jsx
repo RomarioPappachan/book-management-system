@@ -2,11 +2,19 @@
 import React from "react";
 import { IoSearch } from "react-icons/io5";
 
-function Searchbar({ searchTerm, setSearchTerm, handleSearchBook }) {
+function Searchbar({
+  searchTerm,
+  setSearchTerm,
+  setIsSearchBtnClicked,
+  handleSearchBook,
+}) {
   console.log(searchTerm);
 
   function handleOnChange(event) {
     const value = event.target.value;
+    if (!value) {
+      setIsSearchBtnClicked(false);
+    }
     setSearchTerm(value);
   }
   return (

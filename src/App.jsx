@@ -1,24 +1,38 @@
-import BookCard from "./components/BookCard";
+/* eslint-disable react/prop-types */
+
+import React, { useState } from "react";
 import HeroSection from "./components/HeroSection";
 import Searchbar from "./components/Searchbar";
 import Sidebar from "./components/Sidebar";
-import { PiDotsThreeOutline } from "react-icons/pi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import Reviews from "./components/Reviews";
-import { useState } from "react";
 import SearchedBooks from "./components/SearchedBooks";
+import PopularBooks from "./components/PopularBooks";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchBtnClicked, setIsSearchBtnClicked] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
 
   // handleSearch
-  function handleSearchBook() {
+  async function handleSearchBook() {
     if (!searchTerm) {
       alert("Please enter a book or authors name.");
     } else {
       setIsSearchBtnClicked(true);
-      alert("Clicked search button");
+
+      // API call
+
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BASE_URL}?q=${searchTerm}`
+        );
+        const data = await response.json();
+
+        setSearchResult(data.items);
+      } catch (error) {
+        console.error("Error fetching popular books:", error);
+      }
     }
   }
 
@@ -29,11 +43,12 @@ function App() {
       </div>
 
       {/* center div  */}
-      <div className="w-full md:w-[72%] px-2 md:px-10 py-4">
+      <div className="w-full lg:w-[72%] px-2 md:px-10 py-4">
         {/* Searchbar  */}
         <Searchbar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          setIsSearchBtnClicked={setIsSearchBtnClicked}
           handleSearchBook={handleSearchBook}
         />
 
@@ -42,40 +57,15 @@ function App() {
         {!isSearchBtnClicked || !searchTerm ? (
           <HeroSection />
         ) : (
-          <SearchedBooks />
+          <SearchedBooks searchResult={searchResult} />
         )}
 
         {/* Popular Section  */}
-        <div className="py-5">
-          <div className="pb-5 flex justify-between items-center">
-            <h3 className="text-xl text-black">Popular Now</h3>
-            <PiDotsThreeOutline className="z-10 text-3xl" />
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 sm:gap-x-6 md:gap-x-10 gap-y-4 md::gap-y-8">
-            {/* Cards  */}
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-            <BookCard />
-          </div>
-        </div>
+        <PopularBooks />
       </div>
 
       {/* User Review bar  */}
-      <div className="hidden md:block md:w-[20%] p-4 bg-white">
+      <div className="hidden lg:block lg:w-[20%] p-4 bg-white">
         <Reviews
           searchTerm={searchTerm}
           isSearchBtnClicked={isSearchBtnClicked}

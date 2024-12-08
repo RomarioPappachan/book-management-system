@@ -4,8 +4,8 @@ import { BsBoxArrowInUpRight } from "react-icons/bs";
 function HeroSection() {
   return (
     <div className="py-8 md:relative">
-      <div className="w-full md:w-3/4 lg:w-1/2 md:py-6 flex flex-col gap-4">
-        <h1 className="text-4xl sm:text-5xl md:text-[4.2rem] leading-tight text-black">
+      <div className="w-full md:w-1/2 lg:w-[70%] 2xl:w-1/2 md:py-6 flex flex-col gap-4">
+        <h1 className="text-4xl sm:text-5xl md:text-[4.2rem] lg:text-[4rem] leading-tight text-black">
           Happy reading,
           <br />
           Harvey
@@ -19,7 +19,7 @@ function HeroSection() {
       </div>
 
       <img
-        className="w-full md:w-[40vw] md:absolute top-0 -right-1/3"
+        className="w-full md:w-[42vw] xl:w-[38vw] 2xl:w-[40vw] md:absolute top-10 right-0 lg:top-0 lg:-right-[36%] xl:top-0 xl:-right-1/3 mt-4 sm:mt-0 md:mt-4 xl:mt-0"
         src="/book.png"
         alt="Book"
       />
