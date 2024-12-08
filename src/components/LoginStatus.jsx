@@ -5,8 +5,8 @@ function LoginStatus() {
     <div className="flex items-center gap-2 relative">
       <div className="size-10 rounded-full border-[1px] border-[#9CA5B0]">
         <img
-          className="w-full overflow-hidden object-cover"
-          src="/hand.png"
+          className="w-full overflow-hidden object-cover rounded-full"
+          src="/user-profile-image.jpg"
           alt="user image"
         />
       </div>
